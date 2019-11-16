@@ -1,5 +1,140 @@
-jQuery Essential Training by Joe Marini 
+jQuery Essential Training by Joe Marini
 
+http://codeblog.cz/vanilla/
+
+http://www.w3schools.com/js
+http://www.w3schools.com/jquery/
+http://api.jquery.com/
+http://www.html5canvastutorials.com/
+
+# Events:
+```js 
+$('#submit').click(function);
+$("p").dblclick(function);
+$("#id").change(function);
+$(canvas).mousedown(function);
+$(canvas).mousemove(function);
+$("#contact").on('submit', function);
+$('#web').on('input', function);
+$(document).on('change', 'input', function);
+```
+```
+blur		focus		load		resize		scroll
+unload		beforeun	load		click		dblclick
+mousedown	mouseup		mousemove	mouseover	mouseout
+mouseenter	mouseleave	change		select		submit
+keydown		keypress	keyup
+```
+# Selectors
+	http://www.w3schools.com/jquery/trysel.asp
+```js
+$("#test") 			// id
+$(".test") 			// class
+
+$(this)				// current html element
+$("p")				// html element
+$("h1, p")			// h1 and p
+$("p.intro")			// html element with class intro
+$("p:first")			// first <p> element
+$("ul li:first")		// first <li> element of the first <ul>
+$("ul li:first-child")		// first <li> element of every <ul>
+$("tr:even")			// all even <tr> elements
+$("tr:odd")			// all odd <tr> elements
+$(":button")			// all <button> elements and <input> elements of type="button"
+
+$("[href]")			// all elements with an href attribute
+$("a[target='_blank']")		// all <a> elements with a target attribute value equal to "_blank"
+$("a[target!='_blank']")	// all <a> elements with a target attribute value NOT equal to "_blank
+```
+# Html
+```js
+$("#test").html();
+$("#test2").html("<b>Hello world!</b>");
+$( "#result" ).html( html.join( "<br>" ) );
+```	
+# Text 
+```js
+$("#test").text();	
+$("#test1").text("Hello world!");
+```
+# Atribute
+```js
+var attr = $("#w3s").attr("href");
+$("#w3s").attr("href", "http://www.w3schools.com/jquery");
+$("p").removeAttr("style");
+```
+# Val
+```js
+var is_name = input.val();
+$('#EmployeeId').val("fgg");
+```
+# Add/remove class
+```js
+input.removeClass("invalid").addClass("valid"); 
+```
+# Css
+```js
+var color = $( this ).css( "background-color" );
+$(".element").css("margin-left") = "200px";
+$("p").css("background-color", "yellow"); 
+$("p").css({"background-color": "yellow", "font-size": "200%"}); 
+$( this ).css( "width", "+=200" );
+```
+# Create html elements
+```js
+var txt = $("<p></p>").text("Text.");
+$("p").append(txt);
+var div = $('<div></div>').append($('<table></table>')
+var button = $('<button/>', {
+	text: 'Button' + i,
+	id: 'btn_' + i,
+	class: 'cb',
+	click: selectButton
+});
+```
+# Append (AT THE END) inside de element
+```js
+$("p").append("Some appended text."); 
+```
+# Prepend (AT THE BEGINNING) inside de element
+```js
+$("p").prepend("Some prepended text."); 
+```
+# After (AFTER the element)
+```js
+$("img").after("Some text after");
+```
+# Before (BEFORE the element)
+```js
+$("img").before("Some text before"); 
+```
+# Remove
+```js
+$("#div1").remove(); 
+$("p").remove(".test"); // removes all <p> elements with class="test"
+```
+# Empty (removes the child elements)
+```js
+$("#div1").empty();
+```
+# Find
+```js
+$("ul").find("span") 			// all <span> elements that are descendants of <ul>
+$("div").find(".first") 		//descendant elements with class name "first"
+$("body").find("div,li,.first") 	// multiple descendant elements
+
+var $findSpanElements = $("span");
+$("ul").find($findSpanElements);
+
+.closest()	// get the first element that matches the selector
+.parent()	// get the parent of each element in the current set of matched elements
+.parents()	// get the ancestors of each element in the current set of matched elements
+.children() 	// get the children of each element in the set of matched elements
+.siblings() 	// get the siblings of each element in the set of matched elements
+.find()		// get the descendants of each element in the current set of matched elements
+.next() 	// get the immediately following sibling of each element in the set of matched elements
+.prev()		// get the immediately preceding sibling of each element in the set of matched elements
+```
 # Selectores:
 ## Selectores básicos:
 ```js
