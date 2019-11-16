@@ -1,4 +1,4 @@
-#### From the course 'jQuery Essential Training' by Joe Marini 
+jQuery Essential Training by Joe Marini 
 
 # Selectores:
 ## Selectores básicos:
@@ -470,4 +470,812 @@ $(document).ajaxError(function (evt, jqXHR, settings, err) {
 $(document).ajaxSuccess(function (evt, jqXHR, options) {
 	console.log("¡Parece que todo funcionó!");
 });
+```
+
+# JQUERY vs JAVASCRIPT:
+http://youmightnotneedjquery.com/
+
+# JSON
+```js
+// JQUERY
+$.getJSON('/my/url', function(data) {
+
+});
+
+//IE10+
+var request = new XMLHttpRequest();
+request.open('GET', '/my/url', true);
+
+request.onload = function() {
+  if (this.status >= 200 && this.status < 400) {
+    // Success!
+    var data = JSON.parse(this.response);
+  } else {
+    // We reached our target server, but it returned an error
+
+  }
+};
+
+request.onerror = function() {
+  // There was a connection error of some sort
+};
+
+request.send();
+```
+# Request
+```js
+// JQUERY
+$.ajax({
+  type: 'GET',
+  url: '/my/url',
+  success: function(resp) {
+
+  },
+  error: function() {
+
+  }
+});
+
+//IE10+
+var request = new XMLHttpRequest();
+request.open('GET', '/my/url', true);
+
+request.onload = function() {
+  if (this.status >= 200 && this.status < 400) {
+    // Success!
+    var resp = this.response;
+  } else {
+    // We reached our target server, but it returned an error
+
+  }
+};
+
+request.onerror = function() {
+  // There was a connection error of some sort
+};
+
+request.send();
+```
+# Post
+```js
+// JQUERY
+$.ajax({
+  type: 'POST',
+  url: '/my/url',
+  data: data
+});
+
+//IE8+
+var request = new XMLHttpRequest();
+request.open('POST', '/my/url', true);
+request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
+request.send(data);
+```
+# EFFECTS
+
+## Hide
+```js
+// JQUERY
+$(el).hide();
+
+//IE8+
+el.style.display = 'none';
+```
+## Fade In
+```js
+// JQUERY
+$(el).fadeIn();
+
+//IE10+
+el.classList.add('show');
+el.classList.remove('hide');
+.show {
+  transition: opacity 400ms;
+}
+.hide {
+  opacity: 0;
+}
+```
+## Show
+```js
+// JQUERY
+$(el).show();
+
+// IE8+
+el.style.display = '';
+```
+# ELEMENTS
+## Add Class
+```js
+// JQUERY
+$(el).addClass(className);
+
+//IE10+
+el.classList.add(className);
+```
+## After
+```js
+// JQUERY
+$(el).after(htmlString);
+
+// IE8+
+el.insertAdjacentHTML('afterend', htmlString);
+```
+## Append
+```js
+// JQUERY
+$(parent).append(el);
+
+// IE8+
+parent.appendChild(el);
+```
+## Before
+```js
+// JQUERY
+$(el).before(htmlString);
+
+// IE8+
+el.insertAdjacentHTML('beforebegin', htmlString);
+```
+## Clone
+```js
+// JQUERY
+$(el).clone();
+
+// IE8+
+el.cloneNode(true);
+```
+## Contains
+```js
+// JQUERY
+$.contains(el, child);
+
+// IE8+
+el !== child && el.contains(child);
+```
+## Children
+
+```js
+// JQUERY
+$(el).children();
+
+// IE9+
+el.children
+```
+## Contains Selector
+
+```js
+// JQUERY
+$(el).find(selector).length;
+
+// IE8+
+el.querySelector(selector) !== null
+```
+## Each
+
+```js
+// JQUERY
+$(selector).each(function(i, el){
+
+});
+
+// IE9+
+var elements = document.querySelectorAll(selector);
+Array.prototype.forEach.call(elements, function(el, i){
+
+});
+```
+## Empty
+
+```js
+// JQUERY
+$(el).empty();
+
+// IE9+
+el.innerHTML = '';
+```
+# Find Elements
+
+```js
+// JQUERY
+$('.my #awesome selector');
+
+// IE8+
+document.querySelectorAll('.my #awesome selector');
+```
+# Filter
+
+```js
+// JQUERY
+$(selector).filter(filterFn);
+
+// IE9+
+Array.prototype.filter.call(document.querySelectorAll(selector), filterFn);
+```
+## Find Children
+
+```js
+// JQUERY
+$(el).find(selector);
+
+// IE8+
+el.querySelectorAll(selector);
+```
+## Get Attributes
+
+```js
+// JQUERY
+$(el).attr('tabindex');
+
+// IE8+
+el.getAttribute('tabindex');
+```
+## Get Html
+
+```js
+// JQUERY
+$(el).html();
+
+// IE8+
+IE8+
+el.innerHTML
+```
+## Get Outer Html
+
+```js
+// JQUERY
+$('<div>').append($(el).clone()).html();
+
+// IE8+
+el.outerHTML
+```
+## Get Style
+
+```js
+// JQUERY
+$(el).css(ruleName);
+
+// IE9+
+getComputedStyle(el)[ruleName];
+```
+## Get Height
+
+```js
+// JQUERY
+$(el).height();
+
+// IE9+
+parseFloat(getComputedStyle(el, null).height.replace("px", ""))
+```
+## Get Text
+
+```js
+// JQUERY
+$(el).text();
+
+// IE9+
+el.textContent
+```
+## Has Class
+
+```js
+// JQUERY
+$(el).hasClass(className);
+
+// IE10+
+el.classList.contains(className);
+```
+## Matches
+
+```js
+// JQUERY
+$(el).is($(otherEl));
+
+// IE8+
+el === otherEl
+```
+## Get Width
+
+```js
+// JQUERY
+$(el).width();
+
+// IE9+
+parseFloat(getComputedStyle(el, null).width.replace("px", ""))
+```
+## Matches Selector
+
+```js
+// JQUERY
+$(el).is('.my-class');
+
+// IE9+
+var matches = function(el, selector) {
+  return (el.matches || el.matchesSelector || el.msMatchesSelector || el.mozMatchesSelector || el.webkitMatchesSelector || el.oMatchesSelector).call(el, selector);
+};
+
+matches(el, '.my-class');
+```
+## Next
+
+```js
+// JQUERY
+$(el).next();
+
+// IE9+
+el.nextElementSibling
+```
+## Offset Parent
+
+```js
+// JQUERY
+$(el).offsetParent();
+
+// IE8+
+el.offsetParent || el
+```
+## Outer Height
+
+```js
+// JQUERY
+$(el).outerHeight();
+
+// IE8+
+el.offsetHeight
+```
+## Offset
+
+```js
+// JQUERY
+$(el).offset();
+
+// IE8+
+var rect = el.getBoundingClientRect();
+{
+  top: rect.top + document.body.scrollTop,
+  left: rect.left + document.body.scrollLeft
+}
+```
+## Outer Height With Margin
+
+```js
+// JQUERY
+$(el).outerHeight(true);
+
+// IE9+
+function outerHeight(el) {
+  var height = el.offsetHeight;
+  var style = getComputedStyle(el);
+
+  height += parseInt(style.marginTop) + parseInt(style.marginBottom);
+  return height;
+}
+
+outerHeight(el);
+```
+## Outer Width With Margin
+
+```js
+// JQUERY
+$(el).outerWidth(true);
+
+// IE9+
+function outerWidth(el) {
+  var width = el.offsetWidth;
+  var style = getComputedStyle(el);
+
+  width += parseInt(style.marginLeft) + parseInt(style.marginRight);
+  return width;
+}
+
+outerWidth(el);
+```
+## Outer Width
+
+```js
+// JQUERY
+$(el).outerWidth();
+
+// IE8+
+el.offsetWidth
+```
+## Parent
+
+```js
+// JQUERY
+$(el).parent();
+
+// IE8+
+el.parentNode
+```
+## Position
+
+```js
+// JQUERY
+$(el).position();
+
+// IE8+
+IE8+
+{left: el.offsetLeft, top: el.offsetTop}
+```
+## Prepend
+
+```js
+// JQUERY
+$(parent).prepend(el);
+
+// IE8+
+parent.insertBefore(el, parent.firstChild);
+```
+## Position Relative To Viewport
+
+```js
+// JQUERY
+var offset = el.offset();
+
+{
+  top: offset.top - document.body.scrollTop,
+  left: offset.left - document.body.scrollLeft
+}
+
+// IE8+
+el.getBoundingClientRect()
+```
+## Prev
+
+```js
+// JQUERY
+$(el).prev();
+
+// IE9+
+el.previousElementSibling
+```
+## Remove
+
+```js
+// JQUERY
+$(el).remove();
+
+// IE8+
+el.parentNode.removeChild(el);
+```
+## Replace From Html
+
+```js
+// JQUERY
+$(el).replaceWith(string);
+
+// IE8+
+el.outerHTML = string;
+```
+## Remove Class
+
+```js
+// JQUERY
+$(el).removeClass(className);
+
+// IE10+
+el.classList.remove(className);
+```
+## Remove Attributes
+
+```js
+// JQUERY
+$(el).removeAttr('tabindex');
+
+// IE8+
+el.removeAttribute('tabindex');
+```
+## Set Attributes
+
+```js
+// JQUERY
+$(el).attr('tabindex', 3);
+
+// IE8+
+el.setAttribute('tabindex', 3);
+```
+## Set Html
+
+```js
+// JQUERY
+$(el).html(string);
+
+// IE8+
+el.innerHTML = string;
+```
+## Set Style
+
+```js
+// JQUERY
+$(el).css('border-width', '20px');
+
+// IE8+
+// Use a class if possible
+el.style.borderWidth = '20px';
+```
+## Set Text
+
+```js
+// JQUERY
+$(el).text(string);
+
+// IE9+
+el.textContent = string;
+```
+## Set Height
+
+```js
+// JQUERY
+$(el).height(val);
+
+// IE8+
+function setHeight(el, val) {
+    if (typeof val === "function") val = val();
+    if (typeof val === "string") el.style.height = val;
+    else el.style.height = val + "px";
+}
+
+setHeight(el, val);
+```
+## Siblings
+
+```js
+// JQUERY
+$(el).siblings();
+
+// IE9+
+Array.prototype.filter.call(el.parentNode.children, function(child){
+  return child !== el;
+});
+```
+## Set Width
+
+```js
+// JQUERY
+$(el).height(val);
+
+// IE8+
+function setHeight(el, val) {
+    if (typeof val === "function") val = val();
+    if (typeof val === "string") el.style.height = val;
+    else el.style.height = val + "px";
+}
+
+setHeight(el, val);
+```
+## Toggle Class
+
+```js
+// JQUERY
+$(el).toggleClass(className);
+
+// IE10+
+el.classList.toggle(className);
+```
+# EVENTS
+## Off
+
+```js
+// JQUERY
+$(el).off(eventName, eventHandler);
+
+// IE9+
+el.removeEventListener(eventName, eventHandler);
+```
+## On
+
+```js
+// JQUERY
+$(el).on(eventName, eventHandler);
+
+// IE9+
+el.addEventListener(eventName, eventHandler);
+```
+## Trigger Native
+
+```js
+// JQUERY
+$(el).trigger('change');
+
+// IE9+
+// For a full list of event types: https://developer.mozilla.org/en-US/docs/Web/API/document.createEvent
+var event = document.createEvent('HTMLEvents');
+event.initEvent('change', true, false);
+el.dispatchEvent(event);
+```
+## Trigger Custom
+
+```js
+// JQUERY
+$(el).trigger('my-event', {some: 'data'});
+
+// IE9+
+if (window.CustomEvent) {
+  var event = new CustomEvent('my-event', {detail: {some: 'data'}});
+} else {
+  var event = document.createEvent('CustomEvent');
+  event.initCustomEvent('my-event', true, true, {some: 'data'});
+}
+
+el.dispatchEvent(event);
+```
+# Ready
+
+```js
+// JQUERY
+$(document).ready(function(){
+
+});
+
+// IE9+
+function ready(fn) {
+  if (document.readyState != 'loading'){
+    fn();
+  } else {
+    document.addEventListener('DOMContentLoaded', fn);
+  }
+}
+```
+# UTILS
+## Bind
+
+```js
+// JQUERY
+$.proxy(fn, context);
+
+// IE9+
+fn.bind(context);
+```
+## Deep Extend
+
+```js
+// JQUERY
+$.extend(true, {}, objA, objB);
+
+// IE8+
+var deepExtend = function(out) {
+  out = out || {};
+
+  for (var i = 1; i < arguments.length; i++) {
+    var obj = arguments[i];
+
+    if (!obj)
+      continue;
+
+    for (var key in obj) {
+      if (obj.hasOwnProperty(key)) {
+        if (typeof obj[key] === 'object')
+          out[key] = deepExtend(out[key], obj[key]);
+        else
+          out[key] = obj[key];
+      }
+    }
+  }
+
+  return out;
+};
+
+deepExtend({}, objA, objB);
+```
+# Array Each
+
+```js
+// JQUERY
+$.each(array, function(i, item){
+
+});
+
+// IE9+
+array.forEach(function(item, i){
+
+});
+```
+# Index Of
+
+```js
+// JQUERY
+$.inArray(item, array);
+
+// IE9+
+array.indexOf(item);
+```
+# Is Array
+
+```js
+// JQUERY
+$.isArray(arr);
+
+// IE9+
+IE9+
+Array.isArray(arr);
+````
+# Extend
+
+```js
+// JQUERY
+$.extend({}, objA, objB);
+
+// IE8+
+var extend = function(out) {
+  out = out || {};
+
+  for (var i = 1; i < arguments.length; i++) {
+    if (!arguments[i])
+      continue;
+
+    for (var key in arguments[i]) {
+      if (arguments[i].hasOwnProperty(key))
+        out[key] = arguments[i][key];
+    }
+  }
+
+  return out;
+};
+
+extend({}, objA, objB);
+```
+# Now
+
+```js
+// JQUERY
+$.now();
+
+// IE9+
+Date.now();
+```
+# Map
+
+```js
+// JQUERY
+$.map(array, function(value, index){
+
+});
+
+// IE9+
+array.map(function(value, index){
+
+});
+```
+# Parse Html
+
+```js
+// JQUERY
+$.parseHTML(htmlString);
+
+// IE9+
+var parseHTML = function(str) {
+  var tmp = document.implementation.createHTMLDocument();
+  tmp.body.innerHTML = str;
+  return tmp.body.children;
+};
+
+parseHTML(htmlString);
+```
+# Trim
+
+```js
+// JQUERY
+$.trim(string);
+
+// IE9+
+string.trim();
+```
+# Type
+
+```js
+// JQUERY
+$.type(obj);
+
+// IE8+
+Object.prototype.toString.call(obj).replace(/^\[object (.+)\]$/, '$1').toLowerCase();
+```
+# Parse Json
+
+```js
+// JQUERY
+$.parseJSON(string);
+
+// IE8+
+JSON.parse(string);
 ```
