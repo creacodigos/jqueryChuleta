@@ -95,10 +95,16 @@ var button = $('<button/>', {
 # Append (AT THE END) inside de element
 ```js
 $("p").append("Some appended text."); 
+$("p").append(
+	$("<div>",{class:"nombre_Clase", style : "display: none;", id : "perror"})
+	);
 ```
 # Prepend (AT THE BEGINNING) inside de element
 ```js
 $("p").prepend("Some prepended text."); 
+$("p").prepend(
+	$("<div>",{class:"nombre_Clase", style : "display: none;", id : "perror"})
+	);
 ```
 # After (AFTER the element)
 ```js
